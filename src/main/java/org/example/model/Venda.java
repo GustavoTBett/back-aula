@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author gustavo.437413
  */
-public class Venda extends EntityId {
+public class Venda extends EntityId implements OperacaoFinanceira{
 
     private LocalDate dataVenda;
     private Cliente cliente;
@@ -66,6 +66,20 @@ public class Venda extends EntityId {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
-    
-    
+
+
+    @Override
+    public LocalDate getDataOperacao() {
+        return this.getDataOperacao();
+    }
+
+    @Override
+    public Double getValorTotalOperacao() {
+        return this.getItens().stream().mapToDouble(ItemCompra::getValorUnitario).sum();
+    }
+
+    @Override
+    public TipoOperacao getTipoOperacao() {
+        return null;
+    }
 }
