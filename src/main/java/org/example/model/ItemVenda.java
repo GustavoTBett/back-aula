@@ -7,6 +7,12 @@ public class ItemVenda {
     private Double quantidade;
     private Double desconto;
 
+    public Double getValorCalculado() {
+        double valorTotal = this.getValorUnitario() * this.getQuantidade();
+        double descontoCalculado = valorTotal * (this.getDesconto() / 100);
+        return valorTotal - descontoCalculado;
+    }
+
     public ItemVenda(ItemVendavel produtoServico, Double valorUnitario, Double quantidade, Double desconto) {
         this.produtoServico = produtoServico;
         this.valorUnitario = valorUnitario;

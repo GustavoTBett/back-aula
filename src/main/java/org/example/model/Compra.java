@@ -42,6 +42,10 @@ public class Compra extends EntityId implements OperacaoFinanceira{
         this.itens = itens;
     }
 
+    public void addItemCompra(ItemCompra item) {
+        this.itens.add(item);
+    }
+
     @Override
     public LocalDate getDataOperacao() {
         return this.getDataCompra();
@@ -49,7 +53,7 @@ public class Compra extends EntityId implements OperacaoFinanceira{
 
     @Override
     public Double getValorTotalOperacao() {
-        return this.getItens().stream().mapToDouble(ItemCompra::getValorUnitario).sum();
+        return this.getItens().stream().mapToDouble(ItemCompra::getValorCalculado).sum();
     }
 
     @Override

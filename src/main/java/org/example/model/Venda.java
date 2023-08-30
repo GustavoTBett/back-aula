@@ -70,16 +70,16 @@ public class Venda extends EntityId implements OperacaoFinanceira{
 
     @Override
     public LocalDate getDataOperacao() {
-        return this.getDataOperacao();
+        return this.getDataVenda();
     }
 
     @Override
     public Double getValorTotalOperacao() {
-        return this.getItens().stream().mapToDouble(ItemCompra::getValorUnitario).sum();
+        return this.getItens().stream().mapToDouble(ItemVenda::getValorCalculado).sum();
     }
 
     @Override
     public TipoOperacao getTipoOperacao() {
-        return null;
+        return TipoOperacao.CREDITO;
     }
 }

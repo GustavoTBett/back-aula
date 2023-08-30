@@ -9,4 +9,6 @@ public interface OperacaoFinanceira {
     public Double getValorTotalOperacao();
 
     public TipoOperacao getTipoOperacao();
+
+
 }
