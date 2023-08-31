@@ -63,13 +63,13 @@ public class Produto extends ItemVendavel{
         this.nome = nome;
     }
 
-    public void setPrecoVenda(Double precoVenda) {
-        if (this.calcularMargemLucro() <= 20.0) {
-            System.out.println("Precisa ser maior ou igual a 20%");
-        } else {
-            super.setValorUnitario(precoVenda);
-        }
-    }
+//    public void setPrecoVenda(Double precoVenda) {
+//        if (this.calcularMargemLucro() <= 20.0) {
+//            System.out.println("Precisa ser maior ou igual a 20%");
+//        } else {
+//            super.setValorUnitario(precoVenda);
+//        }
+//    }
 
     public Double getPrecoCompra() {
         return precoCompra;
@@ -99,6 +99,13 @@ public class Produto extends ItemVendavel{
         Double lucro = super.getValorUnitario() - precoCompra;
         Double margemLucro = (lucro / super.getValorUnitario()) * 100;
         return margemLucro;
+    }
+
+    public void setPrecoVenda(Double precoVenda) throws MargemLucroExcepction {
+        super.setValorUnitario(precoVenda);
+        if (this.calcularMargemLucro() < 20.0) {
+            throw new MargemLucroExcepction();
+        }
     }
 }
 

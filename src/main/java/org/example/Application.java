@@ -6,12 +6,41 @@ import java.time.LocalDate;
 
 public class Application {
 
-    public static void main(String[] args) {
-        createBalaco();
+    public static void main(String[] args) throws MargemLucroExcepction {
+//        createBalaco();
+        Cliente cliente = new Cliente();
+        cliente.setNome("Teste teste");
 
+        try {
+            cliente.getCpf().toUpperCase();
+        } catch (Exception e) {
+            System.out.println("CPF não informado");
+        }
+
+        Integer calculo;
+        try {
+            calculo= 10/0;
+        } catch (ArithmeticException e) {
+            calculo = 0;
+        }
+
+        System.out.println(calculo);
+
+        try {
+            Integer[] array = {10, 14, 22, 33};
+            System.out.println(array[4]);
+        } catch (Exception e) {
+            System.out.println("Posição n existe");
+        }
+
+        Produto produto = new Produto();
+        produto.setPrecoCompra(1200.00);
+        produto.setPrecoVenda(1400.00);
+
+        System.out.println("Sistema finalizado");
     }
 
-    private void ateAula3() {
+    private static void ateAula3() throws MargemLucroExcepction {
 //        Produto produto = new Produto(1, "Processador", "Ryzen 7 5700x", 110.0,
 //                100.0, LocalDate.of(2023, 8, 9), LocalDate.of(2023, 8, 31), Status.ATIVO);
         Produto produto = new Produto();
