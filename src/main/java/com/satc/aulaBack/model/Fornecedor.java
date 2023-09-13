@@ -1,12 +1,18 @@
 package com.satc.aulaBack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author gustavo.437413
  */
+@Entity
 public class Fornecedor extends Pessoa {
 
+    @Column(name = "cnpj", nullable = true)
     private String cnpj;
+    @Column(name = "inscricao_estadual", nullable = true)
     private String inscricaoEstadual;
 
     public Fornecedor() {

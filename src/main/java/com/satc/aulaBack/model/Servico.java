@@ -1,7 +1,15 @@
 package com.satc.aulaBack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Servico extends ItemVendavel{
+    @Column(name = "quantidade_horas", nullable = true)
     private Double quantidadeHoras;
+
+    public Servico() {
+    }
 
     public Servico(String descricao, Double quantidadeHoras, Double valor) {
         super.setDescricao(descricao);
