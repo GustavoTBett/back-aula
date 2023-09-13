@@ -1,12 +1,23 @@
 package com.satc.aulaBack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
+@Entity
 public class Produto extends ItemVendavel{
+    @Column(name = "nome", length = 100, nullable = true)
     private String nome;
+    @Column(name = "preco_compra", nullable = true)
     private Double precoCompra;
+    @Column(name = "dt_validade", nullable = true)
     private LocalDate dataValidade;
+    @Column(name = "dt_prazo", nullable = true)
     private LocalDate dataPrazo;
+    @Enumerated(EnumType.STRING )
+    @Column(name = "status")
     private Status status;
 
     public Produto() {

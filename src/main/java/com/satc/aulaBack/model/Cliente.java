@@ -1,12 +1,18 @@
 package com.satc.aulaBack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author gustavo.437413
  */
+@Entity
 public class Cliente extends Pessoa {
 
+    @Column(name = "cpf", nullable = true)
     private String cpf;
+    @Column(name = "rg", nullable = true)
     private String rg;
 
     public Cliente() {

@@ -1,14 +1,23 @@
 package com.satc.aulaBack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
+
 /**
  *
  * @author gustavo.437413
  */
+@MappedSuperclass
 public abstract class Pessoa extends EntityId {
 
+    @Column(name = "nome", nullable = true)
     private String nome;
+    @Column(name = "telefone", nullable = true)
     private String telefone;
+    @Column(name = "endereco", nullable = true)
     private String endereco;
+    @Column(name = "email", nullable = true)
     private String email;
 
     public abstract String getDocumentoPrincipal();
