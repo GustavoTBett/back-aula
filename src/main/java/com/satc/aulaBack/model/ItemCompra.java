@@ -1,10 +1,30 @@
 package com.satc.aulaBack.model;
 
-public class ItemCompra {
+import javax.persistence.*;
+
+@Entity
+public class ItemCompra extends EntityId{
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
     private Produto produto;
+    @Column(name = "valor_unitario")
     private Double valorUnitario;
+    @Column(name = "quantidade")
     private Double quantidade;
+    @Column(name = "desconto")
     private Double desconto;
+
+    @ManyToOne
+    @JoinColumn(name = "compra_id")
+    private Compra compra;
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
 
     public ItemCompra(Produto produto, Double valorUnitario, Double quantidade, Double desconto) {
         this.produto = produto;

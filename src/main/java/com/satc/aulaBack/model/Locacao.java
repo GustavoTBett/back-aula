@@ -1,16 +1,25 @@
 package com.satc.aulaBack.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Locacao extends EntityId implements OperacaoFinanceira{
+    @Column(name = "dt_locacao")
     private LocalDate dataLocacao;
+    @Column(name = "dt_devolucao")
     private LocalDate dataDevolucao;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @Column(name = "endereco")
     private String endereco;
+    @Column(name = "observacao")
     private String observacao;
-    private List<ItemLocacao> items = new ArrayList<>();
+    @OneToMany(mappedBy = "locacao")
+    private List<ItemLocacao> itens = new ArrayList<>();
 
     public LocalDate getDataLocacao() {
         return dataLocacao;
@@ -52,16 +61,17 @@ public class Locacao extends EntityId implements OperacaoFinanceira{
         this.observacao = observacao;
     }
 
-    public List<ItemLocacao> getItems() {
-        return items;
+    public List<ItemLocacao> getItens() {
+        return itens;
     }
 
-    public void setItems(List<ItemLocacao> items) {
-        this.items = items;
+    public void setItens(List<ItemLocacao> items) {
+        this.itens = items;
     }
 
     public void addItemLocacao(ItemLocacao item) {
-        this.items.add(item);
+        item.setLocacao(this);
+        this.itens.add(item);
     }
 
     @Override
@@ -71,7 +81,7 @@ public class Locacao extends EntityId implements OperacaoFinanceira{
 
     @Override
     public Double getValorTotalOperacao() {
-        return this.getItems().stream().mapToDouble(ItemLocacao::getValorCalculado).sum();
+        return this.getItens().stream().mapToDouble(ItemLocacao::getValorCalculado).sum();
     }
 
     @Override
