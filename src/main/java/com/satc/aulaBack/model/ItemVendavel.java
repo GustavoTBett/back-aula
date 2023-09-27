@@ -1,9 +1,10 @@
 package com.satc.aulaBack.model;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_item")
 public class ItemVendavel extends EntityId{
     @Column(name = "descricao", nullable = true)
     private String descricao;
