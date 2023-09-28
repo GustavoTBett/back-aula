@@ -1,12 +1,10 @@
 package com.satc.aulaBack.health;
 
-import com.satc.aulaBack.model.Cliente;
-import com.satc.aulaBack.model.Produto;
-import com.satc.aulaBack.model.Servico;
-import com.satc.aulaBack.model.Status;
+import com.satc.aulaBack.model.*;
 import com.satc.aulaBack.repository.ClienteRepository;
 import com.satc.aulaBack.repository.ProdutoRepository;
 import com.satc.aulaBack.repository.ServicoRepository;
+import com.satc.aulaBack.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +22,9 @@ public class healthCheckController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private VendaRepository vendaRepository;
 
     @GetMapping("/health")
     public String healthCheck() {
@@ -60,6 +61,20 @@ public class healthCheckController {
         cliente.setTelefone("cliente");
 
         cliente = clienteRepository.save(cliente);
+
+        Venda venda = new Venda();
+        venda.setCliente(cliente);
+        venda.setDataVenda(LocalDate.now());
+        venda.setObservacao("teste");
+        venda.setFormaPagamento(FormaPagamento.CREDITO);
+
+        ItemVenda itemVenda = new ItemVenda(produto, 1000.0, 1.0, 10.00);
+        ItemVenda itemVenda2 = new ItemVenda(servico, 100.0, 1.0, 10.00);
+
+        venda.addItemVenda(itemVenda);
+        venda.addItemVenda(itemVenda2);
+
+        vendaRepository.save(venda);
 
         return "Comando executado" + produto.getId();
     }
