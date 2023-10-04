@@ -1,6 +1,6 @@
-package org.example.model;
-
-public enum Status {
-    ATIVO,
-    INATIVO;
-}
+//package org.example.model;
+//
+//public enum Status {
+//    ATIVO,
+//    INATIVO;
+//}
