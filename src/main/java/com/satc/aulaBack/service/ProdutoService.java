@@ -13,10 +13,31 @@ import java.util.List;
 public class ProdutoService {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoRepository repository;
 
-    public List<Produto> findProdutosAlugados() {
-        List<Produto> alugados = produtoRepository.findAll(QProduto.produto.status.eq(Status.ALUGADO));
-        return alugados;
+
+    public Produto salvar(Produto entity) {
+        return repository.save(entity);
     }
+
+
+    public List<Produto> buscaTodos() {
+        return repository.findAll();
+    }
+
+
+    public Produto buscaPorId(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+
+    public Produto alterar(Produto entity) {
+        return repository.save(entity);
+    }
+
+
+    public void remover(Long id) {
+        repository.deleteById(id);
+    }
+
 }
